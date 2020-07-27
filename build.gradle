@@ -1,0 +1,24 @@
+plugins {
+    id 'java'
+}
+
+group 'work.socialhub'
+version '1.0-SNAPSHOT'
+
+repositories {
+    maven { url 'https://jitpack.io' }
+    mavenCentral()
+}
+
+dependencies {
+
+    // Common Library
+    compile('com.google.code.gson:gson:2.8.2')
+
+    // J2ObjC Common Library
+    compile('com.github.uakihir0:JLogger:1.4')
+    compile('com.github.uakihir0:JHttpClient:1.1.8')
+
+    // Test
+    testCompile('junit:junit:4.12')
+}
