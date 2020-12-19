@@ -6,7 +6,15 @@ To make pojo object, use [jsonschema2pojo](http://www.jsonschema2pojo.org/).
 ## HowToUse
 
 ```java
+// OAuth 1.1a
+JTWFactory factory = JTWFactory.fromConsumerKeyAndSecret(CONSUMER_KEY, CONSUMER_SECRET);
+JTW client = factory.verifyWithAccessToken(ACCESS_TOKEN, ACCESS_TOKEN_SECRET);
 
+// Send Request. (/2/users/:id)
+Response<Root<User>> response = client.show(UsersLookupIdRequest.builder("11348282").build());
+
+// Show Response.
+System.out.println(response.getValue().getData().getName()); // NASA
 ```
 
 ## Status
