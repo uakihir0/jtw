@@ -1,4 +1,7 @@
 package work.socialhub;
 
-public class JTW {
+import work.socialhub.api.UserResource;
+
+public interface JTW extends
+        UserResource {
 }

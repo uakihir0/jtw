@@ -1,6 +1,8 @@
 package work.socialhub.api;
 
+import work.socialhub.api.request.UsersLookupIdRequest;
 import work.socialhub.api.response.Response;
+import work.socialhub.api.response.Root;
 import work.socialhub.api.response.User;
 
 /**
@@ -9,5 +11,9 @@ import work.socialhub.api.response.User;
  */
 public interface UserResource {
 
-    Response<User> show();
+    /**
+     * Get single user entity.
+     * 特定のユーザー情報を取得する (単数)
+     */
+    Response<Root<User>> show(UsersLookupIdRequest request);
 }

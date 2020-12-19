@@ -6,6 +6,7 @@ package work.socialhub.field;
  */
 public class Expansions {
 
+    public static Expansion PinnedTweetId = new Expansion("pinned_tweet_id");
     public static Expansion AttachmentsPollIds = new Expansion("attachments.poll_ids");
     public static Expansion AttachmentsMediaKeys = new Expansion("attachments.media_keys");
     public static Expansion AuthorId = new Expansion("author_id");
@@ -20,6 +21,7 @@ public class Expansions {
      * すべて取得
      */
     public static Expansion[] All = new Expansion[]{
+            PinnedTweetId,
             AttachmentsPollIds,
             AttachmentsMediaKeys,
             AuthorId,
