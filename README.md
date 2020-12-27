@@ -1,4 +1,4 @@
-# JTW
+# JTW [![](https://jitpack.io/v/uakihir0/jtw.svg)](https://jitpack.io/#uakihir0/jtw)
 
 JTW is Twitter v2 API Client for Java. This library can be complied to Objective-C by [J2ObjC](https://developers.google.com/j2objc/).
 To make pojo object, use [jsonschema2pojo](http://www.jsonschema2pojo.org/).
