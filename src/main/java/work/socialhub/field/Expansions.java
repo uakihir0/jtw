@@ -31,4 +31,28 @@ public class Expansions {
             ReferencedTweetsId,
             ReferencedTweetsIdAuthorId
     };
+
+    /**
+     * get tweet's expansion.
+     * ツイート向けののもを取得
+     */
+    public static Expansion[] Tweet = new Expansion[]{
+            AuthorId,
+            ReferencedTweetsId,
+            InReplyToUserId,
+            AttachmentsMediaKeys,
+            AttachmentsPollIds,
+            GeoPlaceId,
+            EntitiesMentionsUsername,
+            ReferencedTweetsIdAuthorId,
+    };
+
+    /**
+     * get user's expansion.
+     * ユーザー向けののもを取得
+     */
+    public static Expansion[] User = new Expansion[]{
+            PinnedTweetId
+    };
+
 }
