@@ -53,4 +53,55 @@ public class TweetFields {
             Source,
             Withheld
     };
+
+    /**
+     * List of fields that can be retrieved in the case of your own tweets.
+     * 自分のツイートの場合に取得可能なフィールド一覧
+     * (プロモーションツイートは、プロモツイートのみ取得可能)
+     */
+    public static TweetField[] Owned = new TweetField[]{
+            Id,
+            Text,
+            Attachments,
+            AuthorId,
+            ContextAnnotations,
+            ConversationId,
+            CreatedAt,
+            Entities,
+            Geo,
+            InReplyToUserId,
+            Lang,
+            NonPublicMetrics,
+            OrganicMetrics,
+            PossiblySensitive,
+            PublicMetrics,
+            ReferencedTweets,
+            ReplySettings,
+            Source,
+            Withheld
+    };
+
+    /**
+     * List of fields that can be retrieved for tweets that don't belong to you.
+     * 自分のものではないツイートの場合に取得可能なフィールド一覧
+     */
+    public static TweetField[] NotOwned = new TweetField[]{
+            Id,
+            Text,
+            Attachments,
+            AuthorId,
+            ContextAnnotations,
+            ConversationId,
+            CreatedAt,
+            Entities,
+            Geo,
+            InReplyToUserId,
+            Lang,
+            PossiblySensitive,
+            PublicMetrics,
+            ReferencedTweets,
+            ReplySettings,
+            Source,
+            Withheld
+    };
 }

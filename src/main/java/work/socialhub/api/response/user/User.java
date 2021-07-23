@@ -1,4 +1,4 @@
-package work.socialhub.api.response;
+package work.socialhub.api.response.user;
 
 import com.google.gson.annotations.SerializedName;
 
@@ -15,7 +15,7 @@ public class User {
     @SerializedName("pinned_tweet_id")
     private String pinnedTweetId;
     @SerializedName("public_metrics")
-    private Metrics publicMetrics;
+    private PublicMetrics publicMetrics;
     @SerializedName("username")
     private String username;
     @SerializedName("location")
@@ -72,11 +72,11 @@ public class User {
         this.pinnedTweetId = pinnedTweetId;
     }
 
-    public Metrics getPublicMetrics() {
+    public PublicMetrics getPublicMetrics() {
         return publicMetrics;
     }
 
-    public void setPublicMetrics(Metrics publicMetrics) {
+    public void setPublicMetrics(PublicMetrics publicMetrics) {
         this.publicMetrics = publicMetrics;
     }
 

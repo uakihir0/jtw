@@ -1,12 +1,6 @@
 package work.socialhub.api.request;
 
-import work.socialhub.field.Expansion;
-import work.socialhub.field.Expansions;
-import work.socialhub.field.FieldName;
-import work.socialhub.field.TweetField;
-import work.socialhub.field.TweetFields;
-import work.socialhub.field.UserField;
-import work.socialhub.field.UserFields;
+import work.socialhub.field.*;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -14,7 +8,7 @@ import java.util.stream.Stream;
 
 import static java.util.stream.Collectors.joining;
 
-public class UsersLookupIdRequest implements Request {
+public class UserLookupIdRequest implements Request {
 
     private final String id;
     private Expansion[] expansions;
@@ -25,7 +19,7 @@ public class UsersLookupIdRequest implements Request {
         return new UsersLookupIdRequestBuilder().id(id);
     }
 
-    private UsersLookupIdRequest(String id) {
+    private UserLookupIdRequest(String id) {
         this.id = id;
     }
 
@@ -85,12 +79,12 @@ public class UsersLookupIdRequest implements Request {
             return this;
         }
 
-        public UsersLookupIdRequest build() {
-            UsersLookupIdRequest usersLookupIdRequest = new UsersLookupIdRequest(id);
-            usersLookupIdRequest.tweetFields = this.tweetFields;
-            usersLookupIdRequest.expansions = this.expansions;
-            usersLookupIdRequest.userFields = this.userFields;
-            return usersLookupIdRequest;
+        public UserLookupIdRequest build() {
+            UserLookupIdRequest userLookupIdRequest = new UserLookupIdRequest(id);
+            userLookupIdRequest.tweetFields = this.tweetFields;
+            userLookupIdRequest.expansions = this.expansions;
+            userLookupIdRequest.userFields = this.userFields;
+            return userLookupIdRequest;
         }
     }
 

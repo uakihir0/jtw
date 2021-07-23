@@ -1,8 +1,8 @@
-package work.socialhub.api.response;
+package work.socialhub.api.response.user;
 
 import com.google.gson.annotations.SerializedName;
 
-public class Metrics {
+public class PublicMetrics {
 
     @SerializedName("followers_count")
     private Integer followersCount;

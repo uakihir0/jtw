@@ -1,6 +1,7 @@
-package work.socialhub.api.response;
+package work.socialhub.api.response.user;
 
 import com.google.gson.annotations.SerializedName;
+import work.socialhub.api.response.Hashtag;
 
 import java.util.List;
 

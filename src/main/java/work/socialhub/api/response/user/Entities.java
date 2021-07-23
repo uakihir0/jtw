@@ -1,4 +1,4 @@
-package work.socialhub.api.response;
+package work.socialhub.api.response.user;
 
 import com.google.gson.annotations.SerializedName;
 

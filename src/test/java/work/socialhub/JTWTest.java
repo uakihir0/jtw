@@ -2,26 +2,44 @@ package work.socialhub;
 
 import org.junit.Test;
 import work.socialhub.api.JTWFactory;
-import work.socialhub.api.request.UsersLookupIdRequest;
+import work.socialhub.api.request.LikingUsersRequest;
+import work.socialhub.api.request.RetweetByRequest;
 import work.socialhub.api.response.Response;
 import work.socialhub.api.response.Root;
-import work.socialhub.api.response.User;
+import work.socialhub.api.response.user.User;
+
+import java.util.List;
 
 public class JTWTest {
 
-    @Test
-    public void testUserShow() {
-
+    public JTW getClient() {
         JTWFactory factory = JTWFactory.fromConsumerKeyAndSecret(
                 TestProperty.CONSUMER_KEY, TestProperty.CONSUMER_SECRET);
-
-        JTW client = factory.verifyWithAccessToken(
+        return factory.verifyWithAccessToken(
                 TestProperty.ACCESS_TOKEN, TestProperty.ACCESS_TOKEN_SECRET);
+    }
 
-        Response<Root<User>> response = client.show(UsersLookupIdRequest
-                .builder("11348282")
-                .build());
 
-        System.out.println(response.getValue().getData().getName());
+
+    @Test
+    public void testLikingUser() {
+        Response<Root<List<User>>> response = getClient()
+                .likingUsers(LikingUsersRequest
+                        .builder("1416524386757222406")
+                        .build());
+
+        System.out.println(response.getValue().getData().get(0).getName());
+        System.out.println(response.getValue().getIncludes().getTweets().get(0).getText());
+    }
+
+    @Test
+    public void testRetweetBy() {
+        Response<Root<List<User>>> response = getClient()
+                .retweetBy(RetweetByRequest
+                        .builder("1416524386757222406")
+                        .build());
+
+        System.out.println(response.getValue().getData().get(0).getName());
+        System.out.println(response.getValue().getIncludes().getTweets().get(0).getText());
     }
 }
