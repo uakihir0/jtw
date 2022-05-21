@@ -8,18 +8,18 @@ import java.util.stream.Stream;
 
 import static java.util.stream.Collectors.joining;
 
-public class RetweetByRequest implements Request {
+public class RetweetedByRequest implements Request {
 
     private final String id;
     private Expansion[] expansions;
     private TweetField[] tweetFields;
     private UserField[] userFields;
 
-    public static RetweetByRequestBuilder builder(String id) {
-        return new RetweetByRequestBuilder().id(id);
+    public static RetweetedByRequestBuilder builder(String id) {
+        return new RetweetedByRequestBuilder().id(id);
     }
 
-    public RetweetByRequest(String id) {
+    public RetweetedByRequest(String id) {
         this.id = id;
     }
 
@@ -49,41 +49,41 @@ public class RetweetByRequest implements Request {
         return userFields;
     }
 
-    public static final class RetweetByRequestBuilder {
+    public static final class RetweetedByRequestBuilder {
         private String id;
         private Expansion[] expansions = Expansions.User;
         private TweetField[] tweetFields = TweetFields.NotOwned;
         private UserField[] userFields = UserFields.All;
 
-        private RetweetByRequestBuilder() {
+        private RetweetedByRequestBuilder() {
         }
 
-        public RetweetByRequestBuilder id(String id) {
+        public RetweetedByRequestBuilder id(String id) {
             this.id = id;
             return this;
         }
 
-        public RetweetByRequestBuilder expansions(Expansion[] expansions) {
+        public RetweetedByRequestBuilder expansions(Expansion[] expansions) {
             this.expansions = expansions;
             return this;
         }
 
-        public RetweetByRequestBuilder tweetFields(TweetField[] tweetFields) {
+        public RetweetedByRequestBuilder tweetFields(TweetField[] tweetFields) {
             this.tweetFields = tweetFields;
             return this;
         }
 
-        public RetweetByRequestBuilder userFields(UserField[] userFields) {
+        public RetweetedByRequestBuilder userFields(UserField[] userFields) {
             this.userFields = userFields;
             return this;
         }
 
-        public RetweetByRequest build() {
-            RetweetByRequest retweetByRequest = new RetweetByRequest(id);
-            retweetByRequest.userFields = this.userFields;
-            retweetByRequest.tweetFields = this.tweetFields;
-            retweetByRequest.expansions = this.expansions;
-            return retweetByRequest;
+        public RetweetedByRequest build() {
+            RetweetedByRequest retweetedByRequest = new RetweetedByRequest(id);
+            retweetedByRequest.userFields = this.userFields;
+            retweetedByRequest.tweetFields = this.tweetFields;
+            retweetedByRequest.expansions = this.expansions;
+            return retweetedByRequest;
         }
     }
 

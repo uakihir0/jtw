@@ -1,6 +1,6 @@
 package work.socialhub.api;
 
-import work.socialhub.api.request.RetweetByRequest;
+import work.socialhub.api.request.RetweetedByRequest;
 import work.socialhub.api.response.Response;
 import work.socialhub.api.response.Root;
 import work.socialhub.api.response.user.User;
@@ -17,6 +17,5 @@ public interface RetweetResource {
      * Get users who retweets specified tweet.
      * 特定のツイートをリツイートしたユーザーを取得 (複数)
      */
-    Response<Root<List<User>>> retweetBy(RetweetByRequest request);
-
+    Response<Root<List<User>>> retweetedBy(RetweetedByRequest request);
 }

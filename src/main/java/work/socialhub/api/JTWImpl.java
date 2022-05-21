@@ -5,7 +5,8 @@ import twitter4j.auth.Authorization;
 import twitter4j.conf.Configuration;
 import work.socialhub.JTW;
 import work.socialhub.api.request.LikingUsersRequest;
-import work.socialhub.api.request.RetweetByRequest;
+import work.socialhub.api.request.RetweetedByRequest;
+import work.socialhub.api.request.TimelineReverseChronologicalRequest;
 import work.socialhub.api.request.TweetLookupIdRequest;
 import work.socialhub.api.request.UserLookupIdRequest;
 import work.socialhub.api.response.Response;
@@ -58,11 +59,23 @@ public class JTWImpl extends JTWBase implements JTW {
      * {@inheritDoc}
      */
     @Override
-    public Response<Root<List<User>>> retweetBy(RetweetByRequest request) {
+    public Response<Root<List<User>>> retweetedBy(RetweetedByRequest request) {
         return proceed(() -> gson.fromJson(
                 get("tweets/" + request.getId() + "/retweeted_by", request),
                 new TypeToken<Root<List<User>>>() {
                 }.getType()));
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Response<Root<List<Tweet>>> timelinesReverseChronological(
+            TimelineReverseChronologicalRequest request) {
+
+        return proceed(() -> gson.fromJson(
+                get("users/" + request.getId() + "/timelines/reverse_chronological", request),
+                new TypeToken<Root<List<Tweet>>>() {
+                }.getType()));
+    }
 }
