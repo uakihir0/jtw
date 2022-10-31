@@ -1,4 +1,4 @@
-package work.socialhub.api;
+package work.socialhub.api.resouce;
 
 import work.socialhub.api.request.UserLookupIdRequest;
 import work.socialhub.api.response.Response;

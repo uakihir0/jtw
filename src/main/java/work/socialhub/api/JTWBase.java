@@ -45,7 +45,7 @@ public abstract class JTWBase {
                 .toArray(new HttpParameter[]{});
     }
 
-    protected <T> Response<T> proceed(Twitter4JProcedure<T> supplier) {
+    protected <T> Response<T> proceed(JTWProcedure<T> supplier) {
         try {
             return new Response<>(supplier.run());
         } catch (TwitterException e) {
@@ -54,7 +54,7 @@ public abstract class JTWBase {
         }
     }
 
-    interface Twitter4JProcedure<T> {
+    interface JTWProcedure<T> {
         T run() throws TwitterException;
     }
 

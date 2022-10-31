@@ -1,4 +1,4 @@
-package work.socialhub.api;
+package work.socialhub.api.resouce;
 
 import work.socialhub.api.request.TimelineReverseChronologicalRequest;
 import work.socialhub.api.response.Response;
