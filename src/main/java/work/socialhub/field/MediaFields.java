@@ -3,6 +3,7 @@ package work.socialhub.field;
 /**
  * filed list of media entity.
  * メディアエンティティにおけるフィールド一覧
+ * https://developer.twitter.com/en/docs/twitter-api/data-dictionary/object-model/media
  */
 public class MediaFields {
 
@@ -16,9 +17,6 @@ public class MediaFields {
     public static MediaField PromotedMetrics = new MediaField("promoted_metrics");
     public static MediaField PublicMetrics = new MediaField("public_metrics");
     public static MediaField Width = new MediaField("width");
-
-    // 以下のドキュメントにフィールドとして記載されていないけれど確実にあると思われる (2021/7)
-    // @see https://developer.twitter.com/en/docs/twitter-api/data-dictionary/object-model/media
     public static MediaField Url = new MediaField("url");
 
     /**
