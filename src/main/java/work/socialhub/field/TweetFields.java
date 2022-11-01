@@ -14,6 +14,7 @@ public class TweetFields {
     public static TweetField ConversationId = new TweetField("conversation_id");
     public static TweetField CreatedAt = new TweetField("created_at");
     public static TweetField Entities = new TweetField("entities");
+    public static TweetField EditControls = new TweetField("edit_controls");
     public static TweetField Geo = new TweetField("geo");
     public static TweetField InReplyToUserId = new TweetField("in_reply_to_user_id");
     public static TweetField Lang = new TweetField("lang");
@@ -40,6 +41,7 @@ public class TweetFields {
             ConversationId,
             CreatedAt,
             Entities,
+            EditControls,
             Geo,
             InReplyToUserId,
             Lang,
@@ -68,6 +70,7 @@ public class TweetFields {
             ConversationId,
             CreatedAt,
             Entities,
+            EditControls,
             Geo,
             InReplyToUserId,
             Lang,
@@ -94,6 +97,7 @@ public class TweetFields {
             ConversationId,
             CreatedAt,
             Entities,
+            EditControls,
             Geo,
             InReplyToUserId,
             Lang,

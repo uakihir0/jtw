@@ -2,11 +2,14 @@ package work.socialhub.resouces;
 
 import org.junit.Test;
 import work.socialhub.JTWTest;
+import work.socialhub.api.request.DMEventsRequest;
 import work.socialhub.api.request.TweetLookupIdRequest;
 import work.socialhub.api.response.Response;
 import work.socialhub.api.response.Root;
 import work.socialhub.api.response.tweet.Tweet;
 import work.socialhub.field.TweetFields;
+
+import java.util.List;
 
 public class TweetResourceTest extends JTWTest {
 
@@ -23,7 +26,7 @@ public class TweetResourceTest extends JTWTest {
     }
 
     @Test
-    public void testShowOwnedTweetWithMetrics(){
+    public void testShowOwnedTweetWithMetrics() {
         Response<Root<Tweet>> response = getClient()
                 .show(TweetLookupIdRequest
                         .builder("1415982501214838788")
@@ -34,5 +37,16 @@ public class TweetResourceTest extends JTWTest {
                 .getValue().getData()
                 .getNonPublicMetrics()
                 .getImpressionCount());
+    }
+
+    @Test
+    public void testDMEvents() {
+        Response<Root<List<Tweet>>> response = getClient()
+                .dmEvents(DMEventsRequest
+                        .builder().build());
+
+        response.getValue().getData().forEach(d -> {
+            System.out.println(d.getText());
+        });
     }
 }

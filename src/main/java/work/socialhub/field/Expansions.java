@@ -3,6 +3,7 @@ package work.socialhub.field;
 /**
  * expansions
  * 拡張リスト
+ * https://developer.twitter.com/en/docs/twitter-api/expansions
  */
 public class Expansions {
 
@@ -15,6 +16,8 @@ public class Expansions {
     public static Expansion InReplyToUserId = new Expansion("in_reply_to_user_id");
     public static Expansion ReferencedTweetsId = new Expansion("referenced_tweets.id");
     public static Expansion ReferencedTweetsIdAuthorId = new Expansion("referenced_tweets.id.author_id");
+    public static Expansion SenderId = new Expansion("sender_id");
+    public static Expansion ParticipantIds = new Expansion("participant_ids");
 
     /**
      * get all.
@@ -53,6 +56,17 @@ public class Expansions {
      */
     public static Expansion[] User = new Expansion[]{
             PinnedTweetId
+    };
+
+    /**
+     * get dm expansion.
+     * DM 向けののもを取得
+     */
+    public static Expansion[] DM = new Expansion[]{
+            AttachmentsMediaKeys,
+            ReferencedTweetsId,
+            SenderId,
+            ParticipantIds,
     };
 
 }

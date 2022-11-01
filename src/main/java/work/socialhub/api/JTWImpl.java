@@ -4,6 +4,7 @@ import com.google.gson.reflect.TypeToken;
 import twitter4j.auth.Authorization;
 import twitter4j.conf.Configuration;
 import work.socialhub.JTW;
+import work.socialhub.api.request.DMEventsRequest;
 import work.socialhub.api.request.LikingUsersRequest;
 import work.socialhub.api.request.RetweetedByRequest;
 import work.socialhub.api.request.TimelineReverseChronologicalRequest;
@@ -75,6 +76,18 @@ public class JTWImpl extends JTWBase implements JTW {
 
         return proceed(() -> gson.fromJson(
                 get("users/" + request.getId() + "/timelines/reverse_chronological", request),
+                new TypeToken<Root<List<Tweet>>>() {
+                }.getType()));
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Response<Root<List<Tweet>>> dmEvents(DMEventsRequest request) {
+
+        return proceed(() -> gson.fromJson(
+                get("dm_events", request),
                 new TypeToken<Root<List<Tweet>>>() {
                 }.getType()));
     }
