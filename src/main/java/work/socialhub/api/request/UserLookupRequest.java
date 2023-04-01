@@ -3,12 +3,6 @@ package work.socialhub.api.request;
 import work.socialhub.field.Expansion;
 import work.socialhub.field.Expansions;
 import work.socialhub.field.FieldName;
-import work.socialhub.field.MediaField;
-import work.socialhub.field.MediaFields;
-import work.socialhub.field.PlaceField;
-import work.socialhub.field.PlaceFields;
-import work.socialhub.field.PollField;
-import work.socialhub.field.PollFields;
 import work.socialhub.field.TweetField;
 import work.socialhub.field.TweetFields;
 import work.socialhub.field.UserField;
@@ -21,9 +15,6 @@ public class UserLookupRequest implements Request {
 
     private String[] ids;
     private Expansion[] expansions;
-    private MediaField[] mediaFields;
-    private PlaceField[] placeFields;
-    private PollField[] pollFields;
     private TweetField[] tweetFields;
     private UserField[] userFields;
 
@@ -36,9 +27,6 @@ public class UserLookupRequest implements Request {
         Map<String, Object> params = new HashMap<>();
         params.put("ids", String.join(",", ids));
         params.put("expansions", FieldName.joining(expansions));
-        params.put("media.fields", FieldName.joining(mediaFields));
-        params.put("place.fields", FieldName.joining(placeFields));
-        params.put("poll.fields", FieldName.joining(pollFields));
         params.put("tweet.fields", FieldName.joining(tweetFields));
         params.put("user.fields", FieldName.joining(userFields));
         return params;
@@ -54,18 +42,6 @@ public class UserLookupRequest implements Request {
         return expansions;
     }
 
-    public MediaField[] getMediaFields() {
-        return mediaFields;
-    }
-
-    public PlaceField[] getPlaceFields() {
-        return placeFields;
-    }
-
-    public PollField[] getPollFields() {
-        return pollFields;
-    }
-
     public TweetField[] getTweetFields() {
         return tweetFields;
     }
@@ -77,10 +53,7 @@ public class UserLookupRequest implements Request {
     public static final class UsersLookupRequestBuilder {
 
         private String[] ids;
-        private Expansion[] expansions = Expansions.All;
-        private MediaField[] mediaFields = MediaFields.All;
-        private PlaceField[] placeFields = PlaceFields.All;
-        private PollField[] pollFields = PollFields.All;
+        private Expansion[] expansions = Expansions.User;
         private TweetField[] tweetFields = TweetFields.All;
         private UserField[] userFields = UserFields.All;
 
@@ -94,21 +67,6 @@ public class UserLookupRequest implements Request {
 
         public UsersLookupRequestBuilder expansions(Expansion[] expansions) {
             this.expansions = expansions;
-            return this;
-        }
-
-        public UsersLookupRequestBuilder mediaFields(MediaField[] mediaFields) {
-            this.mediaFields = mediaFields;
-            return this;
-        }
-
-        public UsersLookupRequestBuilder placeFields(PlaceField[] placeFields) {
-            this.placeFields = placeFields;
-            return this;
-        }
-
-        public UsersLookupRequestBuilder pollFields(PollField[] pollFields) {
-            this.pollFields = pollFields;
             return this;
         }
 
@@ -126,9 +84,6 @@ public class UserLookupRequest implements Request {
             UserLookupRequest userLookupRequest = new UserLookupRequest();
             userLookupRequest.ids = this.ids;
             userLookupRequest.tweetFields = this.tweetFields;
-            userLookupRequest.placeFields = this.placeFields;
-            userLookupRequest.mediaFields = this.mediaFields;
-            userLookupRequest.pollFields = this.pollFields;
             userLookupRequest.expansions = this.expansions;
             userLookupRequest.userFields = this.userFields;
             return userLookupRequest;

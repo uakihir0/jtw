@@ -3,7 +3,7 @@ package work.socialhub.field;
 /**
  * expansions
  * 拡張リスト
- * https://developer.twitter.com/en/docs/twitter-api/expansions
+ * <a href="https://developer.twitter.com/en/docs/twitter-api/expansions">Reference</a>
  */
 public class Expansions {
 

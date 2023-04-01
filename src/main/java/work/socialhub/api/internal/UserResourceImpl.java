@@ -6,10 +6,13 @@ import twitter4j.auth.Authorization;
 import twitter4j.conf.Configuration;
 import work.socialhub.api.JTWBase;
 import work.socialhub.api.request.UserLookupIdRequest;
+import work.socialhub.api.request.UserLookupRequest;
 import work.socialhub.api.resouce.UserResource;
 import work.socialhub.api.response.Response;
 import work.socialhub.api.response.Root;
 import work.socialhub.api.response.user.User;
+
+import java.util.List;
 
 public class UserResourceImpl extends JTWBase implements UserResource {
 
@@ -21,7 +24,6 @@ public class UserResourceImpl extends JTWBase implements UserResource {
         super(authorization, configuration, httpClient);
     }
 
-
     /**
      * {@inheritDoc}
      */
@@ -30,6 +32,17 @@ public class UserResourceImpl extends JTWBase implements UserResource {
         return proceed(() -> gson.fromJson(
                 get("users/" + request.getId(), request),
                 new TypeToken<Root<User>>() {
+                }.getType()));
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Response<Root<List<User>>> show(UserLookupRequest request) {
+        return proceed(() -> gson.fromJson(
+                get("users", request),
+                new TypeToken<Root<List<User>>>() {
                 }.getType()));
     }
 
