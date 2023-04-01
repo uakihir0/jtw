@@ -36,6 +36,8 @@ public class Tweet {
     public String authorId;
     @SerializedName("reply_settings")
     public String replySettings;
+    @SerializedName("edit_history_tweet_ids")
+    public List<String> editHistoryTweetIds;
 
     // region // Getter&Setter
 
@@ -157,6 +159,14 @@ public class Tweet {
 
     public void setReplySettings(String replySettings) {
         this.replySettings = replySettings;
+    }
+
+    public List<String> getEditHistoryTweetIds() {
+        return editHistoryTweetIds;
+    }
+
+    public void setEditHistoryTweetIds(List<String> editHistoryTweetIds) {
+        this.editHistoryTweetIds = editHistoryTweetIds;
     }
 
     // endregion

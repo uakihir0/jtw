@@ -1,5 +1,7 @@
 package work.socialhub.field;
 
+import java.util.stream.Stream;
+
 public class FieldName {
 
     /**
@@ -26,5 +28,18 @@ public class FieldName {
      */
     public String getName() {
         return fieldName;
+    }
+
+
+    /**
+     * get joining value.
+     * フィールド名を結合して取得
+     *
+     * @param fields field list.
+     * @return joining value.
+     */
+    static public String joining(FieldName[] fields) {
+        return Stream.of(fields).map(FieldName::getName)
+                .collect(java.util.stream.Collectors.joining(","));
     }
 }

@@ -19,9 +19,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.stream.Stream;
-
-import static java.util.stream.Collectors.joining;
 
 public class TimelineReverseChronologicalRequest implements Request {
 
@@ -78,12 +75,12 @@ public class TimelineReverseChronologicalRequest implements Request {
             params.put("max_results", maxResults);
         }
 
-        params.put("expansions", Stream.of(expansions).map(FieldName::getName).collect(joining(",")));
-        params.put("media.fields", Stream.of(mediaFields).map(FieldName::getName).collect(joining(",")));
-        params.put("place.fields", Stream.of(placeFields).map(FieldName::getName).collect(joining(",")));
-        params.put("poll.fields", Stream.of(pollFields).map(FieldName::getName).collect(joining(",")));
-        params.put("tweet.fields", Stream.of(tweetFields).map(FieldName::getName).collect(joining(",")));
-        params.put("user.fields", Stream.of(userFields).map(FieldName::getName).collect(joining(",")));
+        params.put("expansions", FieldName.joining(expansions));
+        params.put("media.fields", FieldName.joining(mediaFields));
+        params.put("place.fields", FieldName.joining(placeFields));
+        params.put("poll.fields", FieldName.joining(pollFields));
+        params.put("tweet.fields", FieldName.joining(tweetFields));
+        params.put("user.fields", FieldName.joining(userFields));
         return params;
     }
 

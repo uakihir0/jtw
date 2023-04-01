@@ -7,11 +7,17 @@ import work.socialhub.api.resouce.TimelineResource;
 import work.socialhub.api.resouce.TweetResource;
 import work.socialhub.api.resouce.UserResource;
 
-public interface JTW extends
-        UserResource,
-        TweetResource,
-        LikeResource,
-        RetweetResource,
-        TimelineResource,
-        DirectMessageResource {
+public interface JTW {
+
+    UserResource users();
+
+    TweetResource tweets();
+
+    LikeResource likes();
+
+    RetweetResource retweets();
+
+    TimelineResource timeline();
+
+    DirectMessageResource directMessagesLookup();
 }

@@ -1,12 +1,15 @@
 package work.socialhub.api.request;
 
-import work.socialhub.field.*;
+import work.socialhub.field.Expansion;
+import work.socialhub.field.Expansions;
+import work.socialhub.field.FieldName;
+import work.socialhub.field.TweetField;
+import work.socialhub.field.TweetFields;
+import work.socialhub.field.UserField;
+import work.socialhub.field.UserFields;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.stream.Stream;
-
-import static java.util.stream.Collectors.joining;
 
 public class RetweetedByRequest implements Request {
 
@@ -26,9 +29,9 @@ public class RetweetedByRequest implements Request {
     @Override
     public Map<String, Object> getParams() {
         Map<String, Object> params = new HashMap<>();
-        params.put("expansions", Stream.of(expansions).map(FieldName::getName).collect(joining(",")));
-        params.put("tweet.fields", Stream.of(tweetFields).map(FieldName::getName).collect(joining(",")));
-        params.put("user.fields", Stream.of(userFields).map(FieldName::getName).collect(joining(",")));
+        params.put("expansions", FieldName.joining(expansions));
+        params.put("tweet.fields", FieldName.joining(tweetFields));
+        params.put("user.fields", FieldName.joining(userFields));
         return params;
     }
 

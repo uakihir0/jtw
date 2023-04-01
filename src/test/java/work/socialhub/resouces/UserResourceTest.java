@@ -12,7 +12,7 @@ public class UserResourceTest extends JTWTest {
     @Test
     public void testShowUser() {
         Response<Root<User>> response = getClient()
-                .show(UserLookupIdRequest
+                .users().show(UserLookupIdRequest
                         .builder("11348282")
                         .build());
 

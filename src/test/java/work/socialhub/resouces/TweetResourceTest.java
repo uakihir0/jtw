@@ -16,7 +16,7 @@ public class TweetResourceTest extends JTWTest {
     @Test
     public void testShowTweet() {
         Response<Root<Tweet>> response = getClient()
-                .show(TweetLookupIdRequest
+                .tweets().show(TweetLookupIdRequest
                         .builder("1416524386757222406")
                         .build());
 
@@ -28,7 +28,7 @@ public class TweetResourceTest extends JTWTest {
     @Test
     public void testShowOwnedTweetWithMetrics() {
         Response<Root<Tweet>> response = getClient()
-                .show(TweetLookupIdRequest
+                .tweets().show(TweetLookupIdRequest
                         .builder("1415982501214838788")
                         .tweetFields(TweetFields.Owned)
                         .build());
@@ -42,6 +42,7 @@ public class TweetResourceTest extends JTWTest {
     @Test
     public void testDMEvents() {
         Response<Root<List<Tweet>>> response = getClient()
+                .directMessagesLookup()
                 .dmEvents(DMEventsRequest
                         .builder().build());
 

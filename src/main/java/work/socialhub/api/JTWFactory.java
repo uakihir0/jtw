@@ -1,5 +1,6 @@
 package work.socialhub.api;
 
+import twitter4j.HttpClientFactory;
 import twitter4j.Twitter;
 import twitter4j.TwitterFactory;
 import twitter4j.auth.AccessToken;
@@ -13,7 +14,9 @@ public class JTWFactory {
     public static JTW fromTwitter4J(Twitter twitter) {
         return new JTWImpl(
                 twitter.getAuthorization(),
-                twitter.getConfiguration());
+                twitter.getConfiguration(),
+                HttpClientFactory.getInstance(twitter.getConfiguration().getHttpClientConfiguration())
+        );
     }
 
     public static JTWFactory fromConsumerKeyAndSecret(

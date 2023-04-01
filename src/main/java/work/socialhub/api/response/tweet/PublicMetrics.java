@@ -12,6 +12,8 @@ public class PublicMetrics {
     public Integer likeCount;
     @SerializedName("quote_count")
     public Integer quoteCount;
+    @SerializedName("impression_count")
+    public Integer impressionCount;
 
     // region // Getter&Setter
 
@@ -47,5 +49,12 @@ public class PublicMetrics {
         this.quoteCount = quoteCount;
     }
 
+    public Integer getImpressionCount() {
+        return impressionCount;
+    }
+
+    public void setImpressionCount(Integer impressionCount) {
+        this.impressionCount = impressionCount;
+    }
     // endregion
 }

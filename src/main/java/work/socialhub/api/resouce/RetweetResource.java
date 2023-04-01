@@ -10,11 +10,12 @@ import java.util.List;
 /**
  * api collection about retweet.
  * リツイート (Retweet) に関連する操作の一覧
+ * <a href="https://developer.twitter.com/en/docs/twitter-api/tweets/retweets/api-reference">API Reference</a>
  */
 public interface RetweetResource {
 
     /**
-     * Get users who retweets specified tweet.
+     * Get users who retweet specified tweet.
      * 特定のツイートをリツイートしたユーザーを取得 (複数)
      */
     Response<Root<List<User>>> retweetedBy(RetweetedByRequest request);

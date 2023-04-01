@@ -1,94 +1,71 @@
 package work.socialhub.api;
 
-import com.google.gson.reflect.TypeToken;
+import twitter4j.HttpClient;
 import twitter4j.auth.Authorization;
 import twitter4j.conf.Configuration;
 import work.socialhub.JTW;
-import work.socialhub.api.request.DMEventsRequest;
-import work.socialhub.api.request.LikingUsersRequest;
-import work.socialhub.api.request.RetweetedByRequest;
-import work.socialhub.api.request.TimelineReverseChronologicalRequest;
-import work.socialhub.api.request.TweetLookupIdRequest;
-import work.socialhub.api.request.UserLookupIdRequest;
-import work.socialhub.api.response.Response;
-import work.socialhub.api.response.Root;
-import work.socialhub.api.response.tweet.Tweet;
-import work.socialhub.api.response.user.User;
+import work.socialhub.api.internal.DirectMessageResourceImpl;
+import work.socialhub.api.internal.LikeResourceImpl;
+import work.socialhub.api.internal.RetweetResourceImpl;
+import work.socialhub.api.internal.TimelineResourceImpl;
+import work.socialhub.api.internal.TweetResourceImpl;
+import work.socialhub.api.internal.UserResourceImpl;
+import work.socialhub.api.resouce.DirectMessageResource;
+import work.socialhub.api.resouce.LikeResource;
+import work.socialhub.api.resouce.RetweetResource;
+import work.socialhub.api.resouce.TimelineResource;
+import work.socialhub.api.resouce.TweetResource;
+import work.socialhub.api.resouce.UserResource;
 
-import java.util.List;
+public class JTWImpl implements JTW {
 
-public class JTWImpl extends JTWBase implements JTW {
+    private final UserResource users;
+    private final TweetResource tweets;
+    private final LikeResource likes;
+    private final RetweetResource retweets;
+    private final TimelineResource timeline;
+    private final DirectMessageResource directMessagesLookup;
 
-    JTWImpl(Authorization authorization, Configuration configuration) {
-        super(authorization, configuration);
+    public JTWImpl(
+            Authorization authorization,
+            Configuration configuration,
+            HttpClient client) {
+
+        users = new UserResourceImpl(authorization, configuration, client);
+        tweets = new TweetResourceImpl(authorization, configuration, client);
+        likes = new LikeResourceImpl(authorization, configuration, client);
+        retweets = new RetweetResourceImpl(authorization, configuration, client);
+        timeline = new TimelineResourceImpl(authorization, configuration, client);
+        directMessagesLookup = new DirectMessageResourceImpl(authorization, configuration, client);
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
-    public Response<Root<User>> show(UserLookupIdRequest request) {
-        return proceed(() -> gson.fromJson(
-                get("users/" + request.getId(), request),
-                new TypeToken<Root<User>>() {
-                }.getType()));
+    public UserResource users() {
+        return users;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
-    public Response<Root<Tweet>> show(TweetLookupIdRequest request) {
-        return proceed(() -> gson.fromJson(
-                get("tweets/" + request.getId(), request),
-                new TypeToken<Root<Tweet>>() {
-                }.getType()));
+    public TweetResource tweets() {
+        return tweets;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
-    public Response<Root<List<User>>> likingUsers(LikingUsersRequest request) {
-        return proceed(() -> gson.fromJson(
-                get("tweets/" + request.getId() + "/liking_users", request),
-                new TypeToken<Root<List<User>>>() {
-                }.getType()));
+    public LikeResource likes() {
+        return likes;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
-    public Response<Root<List<User>>> retweetedBy(RetweetedByRequest request) {
-        return proceed(() -> gson.fromJson(
-                get("tweets/" + request.getId() + "/retweeted_by", request),
-                new TypeToken<Root<List<User>>>() {
-                }.getType()));
+    public RetweetResource retweets() {
+        return retweets;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
-    public Response<Root<List<Tweet>>> timelinesReverseChronological(
-            TimelineReverseChronologicalRequest request) {
-
-        return proceed(() -> gson.fromJson(
-                get("users/" + request.getId() + "/timelines/reverse_chronological", request),
-                new TypeToken<Root<List<Tweet>>>() {
-                }.getType()));
+    public TimelineResource timeline() {
+        return timeline;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
-    public Response<Root<List<Tweet>>> dmEvents(DMEventsRequest request) {
-
-        return proceed(() -> gson.fromJson(
-                get("dm_events", request),
-                new TypeToken<Root<List<Tweet>>>() {
-                }.getType()));
+    public DirectMessageResource directMessagesLookup() {
+        return directMessagesLookup;
     }
 }

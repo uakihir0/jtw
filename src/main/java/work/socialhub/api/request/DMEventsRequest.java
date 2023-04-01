@@ -16,9 +16,6 @@ import work.socialhub.field.UserFields;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.stream.Stream;
-
-import static java.util.stream.Collectors.joining;
 
 public class DMEventsRequest implements Request {
 
@@ -80,13 +77,13 @@ public class DMEventsRequest implements Request {
             params.put("max_results", maxResults);
         }
 
-        params.put("dm_event.fields", Stream.of(dmEventFields).map(FieldName::getName).collect(joining(",")));
-        params.put("event_types", Stream.of(eventTypes).map(FieldName::getName).collect(joining(",")));
-        params.put("expansions", Stream.of(expansions).map(FieldName::getName).collect(joining(",")));
+        params.put("dm_event.fields", FieldName.joining(dmEventFields));
+        params.put("event_types", FieldName.joining(eventTypes));
+        params.put("expansions", FieldName.joining(expansions));
 
-        params.put("media.fields", Stream.of(mediaFields).map(FieldName::getName).collect(joining(",")));
-        params.put("tweet.fields", Stream.of(tweetFields).map(FieldName::getName).collect(joining(",")));
-        params.put("user.fields", Stream.of(userFields).map(FieldName::getName).collect(joining(",")));
+        params.put("media.fields", FieldName.joining(mediaFields));
+        params.put("tweet.fields", FieldName.joining(tweetFields));
+        params.put("user.fields", FieldName.joining(userFields));
         return params;
     }
 

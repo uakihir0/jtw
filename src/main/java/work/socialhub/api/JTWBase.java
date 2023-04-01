@@ -2,7 +2,6 @@ package work.socialhub.api;
 
 import com.google.gson.Gson;
 import twitter4j.HttpClient;
-import twitter4j.HttpClientFactory;
 import twitter4j.HttpParameter;
 import twitter4j.TwitterException;
 import twitter4j.auth.Authorization;
@@ -15,32 +14,30 @@ import java.util.stream.Collectors;
 
 public abstract class JTWBase {
 
-    protected String REST_BASE = "https://api.twitter.com/2/";
+    protected static String REST_BASE = "https://api.twitter.com/2/";
 
-    protected Gson gson = new Gson();
+    protected static Gson gson = new Gson();
 
     protected Authorization auth;
     protected Configuration conf;
-    protected HttpClient http;
+    protected HttpClient client;
 
-    JTWBase(Authorization authorization, Configuration configuration) {
+    protected JTWBase(
+            Authorization authorization,
+            Configuration configuration,
+            HttpClient httpClient) {
         this.auth = authorization;
         this.conf = configuration;
-        this.init();
+        this.client = httpClient;
     }
-
-    private void init() {
-        http = HttpClientFactory.getInstance(conf.getHttpClientConfiguration());
-    }
-
     protected HttpParameter[] toParams(Map<String, Object> params) {
         return params.entrySet().stream().map(e -> {
-            if (e.getValue() instanceof String) {
-                return new HttpParameter(e.getKey(), (String) e.getValue());
-            }
-            throw new IllegalStateException("Unsupported Type: "
-                    + e.getValue().getClass().getName());
-        })
+                    if (e.getValue() instanceof String) {
+                        return new HttpParameter(e.getKey(), (String) e.getValue());
+                    }
+                    throw new IllegalStateException("Unsupported Type: "
+                            + e.getValue().getClass().getName());
+                })
                 .collect(Collectors.toList())
                 .toArray(new HttpParameter[]{});
     }
@@ -54,7 +51,7 @@ public abstract class JTWBase {
         }
     }
 
-    interface JTWProcedure<T> {
+    public interface JTWProcedure<T> {
         T run() throws TwitterException;
     }
 
@@ -62,11 +59,11 @@ public abstract class JTWBase {
      * Send GET Request.
      */
     protected String get(String path, Request request) throws TwitterException {
-        return http.get(
-                REST_BASE + path,
-                toParams(request.getParams()),
-                auth,
-                null)
+        return client.get(
+                        REST_BASE + path,
+                        toParams(request.getParams()),
+                        auth,
+                        null)
                 .asString();
     }
 }

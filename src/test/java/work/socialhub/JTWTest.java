@@ -24,7 +24,7 @@ public class JTWTest {
     @Test
     public void testLikingUser() {
         Response<Root<List<User>>> response = getClient()
-                .likingUsers(LikingUsersRequest
+                .likes().likingUsers(LikingUsersRequest
                         .builder("1416524386757222406")
                         .build());
 
@@ -35,7 +35,7 @@ public class JTWTest {
     @Test
     public void testRetweetedBy() {
         Response<Root<List<User>>> response = getClient()
-                .retweetedBy(RetweetedByRequest
+                .retweets().retweetedBy(RetweetedByRequest
                         .builder("1416524386757222406")
                         .build());
 
@@ -46,7 +46,7 @@ public class JTWTest {
     @Test
     public void testTimelinesReverseChronological() {
         Response<Root<List<Tweet>>> response = getClient()
-                .timelinesReverseChronological(TimelineReverseChronologicalRequest
+                .timeline().timelinesReverseChronological(TimelineReverseChronologicalRequest
                         .builder("362220012")
                         .build());
 

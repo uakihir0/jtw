@@ -2,7 +2,7 @@ package work.socialhub.api.response;
 
 public class Response<T> {
 
-    private T value;
+    private final T value;
 
     public Response(T value) {
         this.value = value;

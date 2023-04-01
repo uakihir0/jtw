@@ -1,12 +1,21 @@
 package work.socialhub.api.request;
 
-import work.socialhub.field.*;
+import work.socialhub.field.Expansion;
+import work.socialhub.field.Expansions;
+import work.socialhub.field.FieldName;
+import work.socialhub.field.MediaField;
+import work.socialhub.field.MediaFields;
+import work.socialhub.field.PlaceField;
+import work.socialhub.field.PlaceFields;
+import work.socialhub.field.PollField;
+import work.socialhub.field.PollFields;
+import work.socialhub.field.TweetField;
+import work.socialhub.field.TweetFields;
+import work.socialhub.field.UserField;
+import work.socialhub.field.UserFields;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.stream.Stream;
-
-import static java.util.stream.Collectors.joining;
 
 public class UserLookupRequest implements Request {
 
@@ -26,12 +35,12 @@ public class UserLookupRequest implements Request {
     public Map<String, Object> getParams() {
         Map<String, Object> params = new HashMap<>();
         params.put("ids", String.join(",", ids));
-        params.put("expansions", Stream.of(expansions).map(FieldName::getName).collect(joining(",")));
-        params.put("media.fields", Stream.of(mediaFields).map(FieldName::getName).collect(joining(",")));
-        params.put("place.fields", Stream.of(placeFields).map(FieldName::getName).collect(joining(",")));
-        params.put("poll.fields", Stream.of(pollFields).map(FieldName::getName).collect(joining(",")));
-        params.put("tweet.fields", Stream.of(tweetFields).map(FieldName::getName).collect(joining(",")));
-        params.put("user.fields", Stream.of(userFields).map(FieldName::getName).collect(joining(",")));
+        params.put("expansions", FieldName.joining(expansions));
+        params.put("media.fields", FieldName.joining(mediaFields));
+        params.put("place.fields", FieldName.joining(placeFields));
+        params.put("poll.fields", FieldName.joining(pollFields));
+        params.put("tweet.fields", FieldName.joining(tweetFields));
+        params.put("user.fields", FieldName.joining(userFields));
         return params;
     }
 
