@@ -35,6 +35,9 @@ public abstract class JTWBase {
                     if (e.getValue() instanceof String) {
                         return new HttpParameter(e.getKey(), (String) e.getValue());
                     }
+                    if (e.getValue() instanceof Integer) {
+                        return new HttpParameter(e.getKey(), (Integer) e.getValue());
+                    }
                     throw new IllegalStateException("Unsupported Type: "
                             + e.getValue().getClass().getName());
                 })

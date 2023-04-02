@@ -8,7 +8,7 @@ import work.socialhub.api.response.tweet.Tweet;
 import java.util.List;
 
 /**
- * ダイレクトメッセージに関連する操作の一覧。
+ * ダイレクトメッセージに関連する操作の一覧
  * About Direct Message Lookup.
  * <a href="https://developer.twitter.com/en/docs/twitter-api/direct-messages/lookup/api-reference">API Reference</a>
  */

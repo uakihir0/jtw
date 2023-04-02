@@ -10,6 +10,9 @@ public class Root<T> {
     @SerializedName("includes")
     private Include includes;
 
+    @SerializedName("meta")
+    private Meta meta;
+
     // region // Getter&Setter
     public T getData() {
         return data;
@@ -25,6 +28,14 @@ public class Root<T> {
 
     public void setIncludes(Include includes) {
         this.includes = includes;
+    }
+
+    public Meta getMeta() {
+        return meta;
+    }
+
+    public void setMeta(Meta meta) {
+        this.meta = meta;
     }
     // endregion
 }

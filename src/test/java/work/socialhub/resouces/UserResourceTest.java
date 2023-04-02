@@ -2,10 +2,10 @@ package work.socialhub.resouces;
 
 import org.junit.Test;
 import work.socialhub.JTWTest;
-import work.socialhub.api.request.users.UsersByUserNameRequest;
-import work.socialhub.api.request.users.UsersByUserNamesRequest;
 import work.socialhub.api.request.users.UsersByIdRequest;
 import work.socialhub.api.request.users.UsersByIdsRequest;
+import work.socialhub.api.request.users.UsersByUserNameRequest;
+import work.socialhub.api.request.users.UsersByUserNamesRequest;
 import work.socialhub.api.response.Response;
 import work.socialhub.api.response.Root;
 import work.socialhub.api.response.user.User;
@@ -21,9 +21,7 @@ public class UserResourceTest extends JTWTest {
                         .builder("11348282")
                         .build());
 
-        System.out.println(response
-                .getValue().getData()
-                .getName());
+        print(response.getValue().getData());
     }
 
     @Test
@@ -37,7 +35,7 @@ public class UserResourceTest extends JTWTest {
                         .build());
 
         for (User user : response.getValue().getData()) {
-            System.out.println(user.getName());
+            print(user);
         }
     }
 
@@ -48,9 +46,7 @@ public class UserResourceTest extends JTWTest {
                         .builder("uakihir0")
                         .build());
 
-        System.out.println(response
-                .getValue().getData()
-                .getName());
+        print(response.getValue().getData());
     }
 
 
@@ -65,7 +61,7 @@ public class UserResourceTest extends JTWTest {
                         .build());
 
         for (User user : response.getValue().getData()) {
-            System.out.println(user.getName());
+            print(user);
         }
     }
 }

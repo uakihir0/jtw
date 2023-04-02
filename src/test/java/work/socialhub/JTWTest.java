@@ -52,4 +52,16 @@ public class JTWTest {
 
         System.out.println(response.getValue().getData().get(0).getText());
     }
+
+    protected void print(Tweet tweet) {
+        System.out.println("===============================");
+        System.out.println("ID  > " + tweet.getId());
+        System.out.println("Text> " + tweet.getText());
+    }
+
+    protected void print(User user) {
+        System.out.println("===============================");
+        System.out.println("ID  > " + user.getId());
+        System.out.println("Name> " + user.getName());
+    }
 }

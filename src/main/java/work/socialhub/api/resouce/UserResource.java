@@ -1,9 +1,9 @@
 package work.socialhub.api.resouce;
 
-import work.socialhub.api.request.users.UsersByUserNameRequest;
-import work.socialhub.api.request.users.UsersByUserNamesRequest;
 import work.socialhub.api.request.users.UsersByIdRequest;
 import work.socialhub.api.request.users.UsersByIdsRequest;
+import work.socialhub.api.request.users.UsersByUserNameRequest;
+import work.socialhub.api.request.users.UsersByUserNamesRequest;
 import work.socialhub.api.response.Response;
 import work.socialhub.api.response.Root;
 import work.socialhub.api.response.user.User;

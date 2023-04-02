@@ -1,6 +1,7 @@
 package work.socialhub;
 
 import work.socialhub.api.resouce.DirectMessageResource;
+import work.socialhub.api.resouce.FollowResource;
 import work.socialhub.api.resouce.LikeResource;
 import work.socialhub.api.resouce.RetweetResource;
 import work.socialhub.api.resouce.TimelineResource;
@@ -11,6 +12,7 @@ public interface JTW {
 
     UserResource users();
 
+    FollowResource follows();
     TweetResource tweets();
 
     LikeResource likes();
