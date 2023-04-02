@@ -1,5 +1,6 @@
 package work.socialhub.api.resouce;
 
+import work.socialhub.api.request.UserLookupByRequest;
 import work.socialhub.api.request.UserLookupIdRequest;
 import work.socialhub.api.request.UserLookupRequest;
 import work.socialhub.api.response.Response;
@@ -15,14 +16,21 @@ import java.util.List;
 public interface UserResource {
 
     /**
-     * Get single user entity.
+     * Get single user entity from id.
      * 特定のユーザー情報を取得する (単数)
      */
     Response<Root<User>> show(UserLookupIdRequest request);
 
     /**
-     * Get user entities.
+     * Get user entities from ids.
      * 複数のユーザー情報を取得する (複数)
      */
     Response<Root<List<User>>> show(UserLookupRequest request);
+
+
+    /**
+     * Get user entities from usernames.
+     * 複数のユーザー情報を取得する (複数)
+     */
+    Response<Root<List<User>>> show(UserLookupByRequest request);
 }

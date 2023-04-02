@@ -5,6 +5,7 @@ import twitter4j.HttpClient;
 import twitter4j.auth.Authorization;
 import twitter4j.conf.Configuration;
 import work.socialhub.api.JTWBase;
+import work.socialhub.api.request.UserLookupByRequest;
 import work.socialhub.api.request.UserLookupIdRequest;
 import work.socialhub.api.request.UserLookupRequest;
 import work.socialhub.api.resouce.UserResource;
@@ -46,4 +47,14 @@ public class UserResourceImpl extends JTWBase implements UserResource {
                 }.getType()));
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Response<Root<List<User>>> show(UserLookupByRequest request) {
+        return proceed(() -> gson.fromJson(
+                get("users/by", request),
+                new TypeToken<Root<List<User>>>() {
+                }.getType()));
+    }
 }

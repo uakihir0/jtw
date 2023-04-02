@@ -2,6 +2,7 @@ package work.socialhub.resouces;
 
 import org.junit.Test;
 import work.socialhub.JTWTest;
+import work.socialhub.api.request.UserLookupByRequest;
 import work.socialhub.api.request.UserLookupIdRequest;
 import work.socialhub.api.request.UserLookupRequest;
 import work.socialhub.api.response.Response;
@@ -31,6 +32,21 @@ public class UserResourceTest extends JTWTest {
                         .builder()
                         .ids(new String[]{
                                 "11348282"
+                        })
+                        .build());
+
+        for (User user : response.getValue().getData()) {
+            System.out.println(user.getName());
+        }
+    }
+
+    @Test
+    public void testShowUsersBy() {
+        Response<Root<List<User>>> response = getClient()
+                .users().show(UserLookupByRequest
+                        .builder()
+                        .usernames(new String[]{
+                                "uakihir0"
                         })
                         .build());
 
