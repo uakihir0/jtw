@@ -1,8 +1,11 @@
 package work.socialhub.api;
 
 import com.google.gson.Gson;
+import net.socialhub.http.HttpMediaType;
+import net.socialhub.http.HttpRequestBuilder;
 import twitter4j.HttpClient;
 import twitter4j.HttpParameter;
+import twitter4j.JSONObject;
 import twitter4j.TwitterException;
 import twitter4j.auth.Authorization;
 import twitter4j.conf.Configuration;
@@ -30,6 +33,7 @@ public abstract class JTWBase {
         this.conf = configuration;
         this.client = httpClient;
     }
+
     protected HttpParameter[] toParams(Map<String, Object> params) {
         return params.entrySet().stream().map(e -> {
                     if (e.getValue() instanceof String) {
@@ -63,8 +67,22 @@ public abstract class JTWBase {
      */
     protected String get(String path, Request request) throws TwitterException {
         return client.get(
-                        REST_BASE + path,
+                        (REST_BASE + path),
                         toParams(request.getParams()),
+                        auth,
+                        null)
+                .asString();
+    }
+
+    /**
+     * Send POST Request.
+     */
+    protected String post(String path, Request request) throws TwitterException {
+        JSONObject json = new JSONObject(gson.toJson(request.getParams()));
+
+        return client.post(
+                        (REST_BASE + path),
+                        new HttpParameter[]{new HttpParameter(json)},
                         auth,
                         null)
                 .asString();
