@@ -1,5 +1,6 @@
-package work.socialhub.api.request;
+package work.socialhub.api.request.users;
 
+import work.socialhub.api.request.Request;
 import work.socialhub.field.Expansion;
 import work.socialhub.field.Expansions;
 import work.socialhub.field.FieldName;
@@ -11,31 +12,34 @@ import work.socialhub.field.UserFields;
 import java.util.HashMap;
 import java.util.Map;
 
-public class UserLookupByRequest implements Request {
+public class UsersByUserNameRequest implements Request {
 
-    private String[] usernames;
+    private final String username;
     private Expansion[] expansions;
     private TweetField[] tweetFields;
     private UserField[] userFields;
 
-    public static UserLookupByRequestBuilder builder() {
-        return new UserLookupByRequestBuilder();
+    public static UsersByUserNameRequestBuilder builder(String username) {
+        return new UsersByUserNameRequestBuilder().username(username);
+    }
+
+    private UsersByUserNameRequest(String username) {
+        this.username = username;
     }
 
     @Override
     public Map<String, Object> getParams() {
         Map<String, Object> params = new HashMap<>();
-        params.put("usernames", String.join(",", usernames));
         params.put("expansions", FieldName.joining(expansions));
         params.put("tweet.fields", FieldName.joining(tweetFields));
         params.put("user.fields", FieldName.joining(userFields));
         return params;
     }
 
-    // region // AutoGenerat
+    // region // AutoGenerate
 
-    public String[] getUsernames() {
-        return usernames;
+    public String getUsername() {
+        return username;
     }
 
     public Expansion[] getExpansions() {
@@ -50,42 +54,43 @@ public class UserLookupByRequest implements Request {
         return userFields;
     }
 
-    public static final class UserLookupByRequestBuilder {
-        private String[] usernames;
+    public static final class UsersByUserNameRequestBuilder {
+        private String username;
         private Expansion[] expansions = Expansions.User;
         private TweetField[] tweetFields = TweetFields.All;
         private UserField[] userFields = UserFields.All;
 
-        private UserLookupByRequestBuilder() {
+        private UsersByUserNameRequestBuilder() {
         }
 
-        public UserLookupByRequestBuilder usernames(String[] usernames) {
-            this.usernames = usernames;
+        public UsersByUserNameRequestBuilder username(String username) {
+            this.username = username;
             return this;
         }
 
-        public UserLookupByRequestBuilder expansions(Expansion[] expansions) {
+        public UsersByUserNameRequestBuilder expansions(Expansion[] expansions) {
             this.expansions = expansions;
             return this;
         }
 
-        public UserLookupByRequestBuilder tweetFields(TweetField[] tweetFields) {
+        public UsersByUserNameRequestBuilder tweetFields(TweetField[] tweetFields) {
             this.tweetFields = tweetFields;
             return this;
         }
 
-        public UserLookupByRequestBuilder userFields(UserField[] userFields) {
+        public UsersByUserNameRequestBuilder userFields(UserField[] userFields) {
             this.userFields = userFields;
             return this;
         }
 
-        public UserLookupByRequest build() {
-            UserLookupByRequest userLookupByRequest = new UserLookupByRequest();
-            userLookupByRequest.userFields = this.userFields;
-            userLookupByRequest.usernames = this.usernames;
-            userLookupByRequest.expansions = this.expansions;
-            userLookupByRequest.tweetFields = this.tweetFields;
-            return userLookupByRequest;
+        public UsersByUserNameRequest build() {
+            UsersByUserNameRequest usersByUserNameRequest = new UsersByUserNameRequest(username);
+            usersByUserNameRequest.expansions = this.expansions;
+            usersByUserNameRequest.userFields = this.userFields;
+            usersByUserNameRequest.tweetFields = this.tweetFields;
+            return usersByUserNameRequest;
         }
     }
+
+    // endregion
 }

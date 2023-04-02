@@ -5,9 +5,10 @@ import twitter4j.HttpClient;
 import twitter4j.auth.Authorization;
 import twitter4j.conf.Configuration;
 import work.socialhub.api.JTWBase;
-import work.socialhub.api.request.UserLookupByRequest;
-import work.socialhub.api.request.UserLookupIdRequest;
-import work.socialhub.api.request.UserLookupRequest;
+import work.socialhub.api.request.users.UsersByUserNameRequest;
+import work.socialhub.api.request.users.UsersByUserNamesRequest;
+import work.socialhub.api.request.users.UsersByIdRequest;
+import work.socialhub.api.request.users.UsersByIdsRequest;
 import work.socialhub.api.resouce.UserResource;
 import work.socialhub.api.response.Response;
 import work.socialhub.api.response.Root;
@@ -29,7 +30,7 @@ public class UserResourceImpl extends JTWBase implements UserResource {
      * {@inheritDoc}
      */
     @Override
-    public Response<Root<User>> show(UserLookupIdRequest request) {
+    public Response<Root<User>> get(UsersByIdRequest request) {
         return proceed(() -> gson.fromJson(
                 get("users/" + request.getId(), request),
                 new TypeToken<Root<User>>() {
@@ -40,7 +41,7 @@ public class UserResourceImpl extends JTWBase implements UserResource {
      * {@inheritDoc}
      */
     @Override
-    public Response<Root<List<User>>> show(UserLookupRequest request) {
+    public Response<Root<List<User>>> get(UsersByIdsRequest request) {
         return proceed(() -> gson.fromJson(
                 get("users", request),
                 new TypeToken<Root<List<User>>>() {
@@ -51,7 +52,18 @@ public class UserResourceImpl extends JTWBase implements UserResource {
      * {@inheritDoc}
      */
     @Override
-    public Response<Root<List<User>>> show(UserLookupByRequest request) {
+    public Response<Root<User>> get(UsersByUserNameRequest request) {
+        return proceed(() -> gson.fromJson(
+                get("users/by/username/" + request.getUsername(), request),
+                new TypeToken<Root<User>>() {
+                }.getType()));
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Response<Root<List<User>>> get(UsersByUserNamesRequest request) {
         return proceed(() -> gson.fromJson(
                 get("users/by", request),
                 new TypeToken<Root<List<User>>>() {

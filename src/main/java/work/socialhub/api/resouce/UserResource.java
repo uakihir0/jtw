@@ -1,8 +1,9 @@
 package work.socialhub.api.resouce;
 
-import work.socialhub.api.request.UserLookupByRequest;
-import work.socialhub.api.request.UserLookupIdRequest;
-import work.socialhub.api.request.UserLookupRequest;
+import work.socialhub.api.request.users.UsersByUserNameRequest;
+import work.socialhub.api.request.users.UsersByUserNamesRequest;
+import work.socialhub.api.request.users.UsersByIdRequest;
+import work.socialhub.api.request.users.UsersByIdsRequest;
 import work.socialhub.api.response.Response;
 import work.socialhub.api.response.Root;
 import work.socialhub.api.response.user.User;
@@ -16,21 +17,26 @@ import java.util.List;
 public interface UserResource {
 
     /**
-     * Get single user entity from id.
-     * 特定のユーザー情報を取得する (単数)
+     * Get user entity from id.
+     * ID から特定のユーザー情報を取得する (単数)
      */
-    Response<Root<User>> show(UserLookupIdRequest request);
+    Response<Root<User>> get(UsersByIdRequest request);
 
     /**
      * Get user entities from ids.
-     * 複数のユーザー情報を取得する (複数)
+     * ID から複数のユーザー情報を取得する (複数)
      */
-    Response<Root<List<User>>> show(UserLookupRequest request);
+    Response<Root<List<User>>> get(UsersByIdsRequest request);
 
+    /**
+     * Get user entity from username.
+     * ユーザー名から複数のユーザー情報を取得する (単数)
+     */
+    Response<Root<User>> get(UsersByUserNameRequest request);
 
     /**
      * Get user entities from usernames.
-     * 複数のユーザー情報を取得する (複数)
+     * ユーザー名から複数のユーザー情報を取得する (複数)
      */
-    Response<Root<List<User>>> show(UserLookupByRequest request);
+    Response<Root<List<User>>> get(UsersByUserNamesRequest request);
 }
