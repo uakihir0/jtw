@@ -3,6 +3,7 @@ package work.socialhub.resouces;
 import org.junit.Test;
 import work.socialhub.JTWTest;
 import work.socialhub.api.request.follows.FollowsCreateFollowRequest;
+import work.socialhub.api.request.follows.FollowsDeleteFollowRequest;
 import work.socialhub.api.request.follows.FollowsGetFollowerRequest;
 import work.socialhub.api.request.follows.FollowsGetFollowingRequest;
 import work.socialhub.api.response.Response;
@@ -70,6 +71,18 @@ public class FollowResourceTest extends JTWTest {
     public void testCreateFollow() {
         Response<Root<RelationShip>> response = getClient()
                 .follows().createFollow(FollowsCreateFollowRequest
+                        .builder("", "")
+                        .build());
+
+        RelationShip relationShip = response.getValue().getData();
+        System.out.println(relationShip.getPendingFollow());
+        System.out.println(relationShip.getFollowing());
+    }
+
+    @Test
+    public void testDeleteFollow() {
+        Response<Root<RelationShip>> response = getClient()
+                .follows().deleteFollow(FollowsDeleteFollowRequest
                         .builder("", "")
                         .build());
 

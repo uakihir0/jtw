@@ -1,6 +1,7 @@
 package work.socialhub.api.resouce;
 
 import work.socialhub.api.request.follows.FollowsCreateFollowRequest;
+import work.socialhub.api.request.follows.FollowsDeleteFollowRequest;
 import work.socialhub.api.request.follows.FollowsGetFollowerRequest;
 import work.socialhub.api.request.follows.FollowsGetFollowingRequest;
 import work.socialhub.api.response.Response;
@@ -37,4 +38,11 @@ public interface FollowResource {
      * <a href="https://developer.twitter.com/en/docs/twitter-api/users/follows/api-reference/post-users-source_user_id-following">Reference</a>
      */
     Response<Root<RelationShip>> createFollow(FollowsCreateFollowRequest request);
+
+    /**
+     * Allows a user ID to unfollow another user.
+     * ユーザーのフォローを解除します。
+     * <a href="https://developer.twitter.com/en/docs/twitter-api/users/follows/api-reference/post-users-source_user_id-following">Reference</a>
+     */
+    Response<Root<RelationShip>> deleteFollow(FollowsDeleteFollowRequest request);
 }

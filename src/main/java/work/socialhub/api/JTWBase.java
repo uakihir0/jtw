@@ -78,13 +78,29 @@ public abstract class JTWBase {
      * Send POST Request.
      */
     protected String post(String path, Request request) throws TwitterException {
-        JSONObject json = new JSONObject(gson.toJson(request.getParams()));
-
         return client.post(
                         (REST_BASE + path),
-                        new HttpParameter[]{new HttpParameter(json)},
+                        jsonParams(request),
                         auth,
                         null)
                 .asString();
+    }
+
+    /**
+     * Send DELETE Request.
+     */
+    protected String delete(String path, Request request) throws TwitterException {
+        return client.delete(
+                        (REST_BASE + path),
+                        jsonParams(request),
+                        auth,
+                        null)
+                .asString();
+    }
+
+    private HttpParameter[] jsonParams(Request request) {
+        if (request == null) return null;
+        JSONObject json = new JSONObject(gson.toJson(request.getParams()));
+        return new HttpParameter[]{new HttpParameter(json)};
     }
 }
